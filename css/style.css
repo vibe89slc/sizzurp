@@ -1874,6 +1874,30 @@ address {
     color: var(--color-text-muted);
 }
 
+.footer__bottom p + p {
+    margin-top: 0.65rem;
+}
+
+.footer__bottom .footer__credit {
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+}
+
+.footer__credit a {
+    color: var(--color-secondary);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+.footer__credit a:hover,
+.footer__credit a:focus-visible {
+    color: var(--color-white);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
 @media (max-width: 768px) {
     .footer__grid {
         grid-template-columns: 1fr 1fr;
