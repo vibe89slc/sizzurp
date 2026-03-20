@@ -1370,12 +1370,17 @@ address {
 
     .drink-card__footer {
         flex-wrap: wrap;
-        gap: 0.75rem;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.5rem 1.35rem;
     }
 
+    /* Compact pill — don’t stretch full width */
     .drink-card__order {
-        flex: 1 1 auto;
-        min-width: 120px;
+        flex: 0 0 auto;
+        width: auto;
+        min-width: 0;
+        padding: 0.5rem 1rem;
     }
 }
 
