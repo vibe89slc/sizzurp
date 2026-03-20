@@ -305,9 +305,8 @@ address {
 }
 
 .site-header.scrolled {
-    background: rgba(13, 13, 18, 0.92);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    /* No backdrop-filter: it creates a containing block and clips position:fixed .nav__menu to header height */
+    background: rgba(13, 13, 18, 0.97);
     box-shadow: 0 2px 40px rgba(0, 0, 0, 0.4);
 }
 
@@ -412,21 +411,28 @@ address {
         position: fixed;
         top: 0;
         right: 0;
+        z-index: 1002;
         width: min(88vw, 360px);
         height: 100vh;
         height: 100dvh;
+        min-height: 100vh;
+        min-height: 100dvh;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
+        align-items: stretch;
+        padding-top: max(5.5rem, calc(var(--safe-top) + 4.5rem));
         gap: 0.35rem;
-        background: rgba(13, 13, 18, 0.97);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-        padding: max(2rem, calc(var(--safe-top) + 1rem)) max(1.5rem, var(--safe-right)) max(2rem, var(--safe-bottom)) 1.5rem;
+        background: rgba(13, 13, 18, 0.98);
+        /* Avoid backdrop-filter here — same fixed-position clipping issue inside header */
+        padding-left: 1.5rem;
+        padding-right: max(1.5rem, var(--safe-right));
+        padding-bottom: max(2rem, var(--safe-bottom));
         transform: translateX(100%);
         transition: transform 0.4s var(--ease-out);
         border-left: 1px solid rgba(var(--color-primary-rgb), 0.2);
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
+        box-sizing: border-box;
     }
 
     .nav__menu.open {
@@ -1897,8 +1903,7 @@ address {
     opacity: 0.85;
 }
 
-/* Ensure content layers above bubbles */
-.site-header,
+/* Content above bubbles (.site-header stays higher — own z-index — so mobile menu isn’t under overlay) */
 main,
 .footer {
     position: relative;
@@ -1941,12 +1946,12 @@ main,
 [data-delay="2"] { transition-delay: 0.2s; }
 [data-delay="3"] { transition-delay: 0.3s; }
 
-/* --- Mobile overlay backdrop --- */
+/* --- Mobile overlay backdrop (below header so drawer + toggle stay visible) --- */
 .nav-overlay {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.6);
-    z-index: 999;
+    z-index: 998;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s;
