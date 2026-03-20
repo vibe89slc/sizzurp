@@ -881,29 +881,34 @@ address {
     height: 0%;
     background: linear-gradient(to top, var(--color-primary), var(--color-secondary));
     border-radius: 0 0 10px 10px;
-    transition: height 1.1s var(--ease-out);
-    transition-delay: 0s;
+    /* Fill timing applied only when .sizes--inview so cups don’t “pre-fill” off-screen */
+    transition: height 0s linear 0s;
     opacity: 0.85;
+}
+
+/* Start liquid rise only after cards are mostly visible (card fade ~0.65s + stagger) */
+.sizes--inview .size-card__liquid {
+    transition: height 1.15s var(--ease-out);
 }
 
 .sizes--inview .size-card:nth-child(1) .size-card__liquid {
     height: 75%;
-    transition-delay: 0.05s;
+    transition-delay: 0.58s;
 }
 
 .sizes--inview .size-card:nth-child(2) .size-card__liquid {
     height: 75%;
-    transition-delay: 0.2s;
+    transition-delay: 0.72s;
 }
 
 .sizes--inview .size-card:nth-child(3) .size-card__liquid {
     height: 75%;
-    transition-delay: 0.35s;
+    transition-delay: 0.86s;
 }
 
 .sizes--inview .size-card:nth-child(4) .size-card__liquid {
     height: 75%;
-    transition-delay: 0.5s;
+    transition-delay: 1s;
 }
 
 .sizes--inview .size-card {

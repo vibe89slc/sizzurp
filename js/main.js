@@ -332,8 +332,9 @@
                     }
                 });
             }, {
-                threshold: 0.15,
-                rootMargin: '0px 0px 10% 0px'
+                /* Require section to be clearly in view before fill (no early trigger) */
+                threshold: 0.22,
+                rootMargin: '0px 0px -6% 0px'
             });
             sizesIo.observe(sizesSection);
         }
